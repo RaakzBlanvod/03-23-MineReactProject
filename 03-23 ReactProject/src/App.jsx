@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import TasksManager from '../components/TaskManager'
+import TasksManager from './components/TaskManager'
 
 function App() {
   const [count, setCount] = useState(0)

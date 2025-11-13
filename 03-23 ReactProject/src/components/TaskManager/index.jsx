@@ -7,6 +7,11 @@ const TasksManager = () => {
         { id: 1, text: "Feed my dog", completed: false, deadline: null },
         { id: 2, text: "Make dinner", completed: false, deadline: null }
     ])
+    const [searchTerm, setSearchTerm] = useState("")
+
+    const filteredTasks = tasks.filter(task =>
+        task.text.toLowerCase().includes(searchTerm.toLowerCase())
+    )
 
     const addTask = (taskData) => {
         const newTask = {
@@ -38,9 +43,21 @@ const TasksManager = () => {
 
     return (
         <div className="tasks-manager">
+            <h1>Task Manager</h1>
+            
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="🔍 Search tasks..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+            </div>
+
             <TasksAddForm addTask={addTask} />
             <TasksList 
-                tasks={tasks}
+                tasks={filteredTasks}
                 removeTask={removeTask}
                 toggleTask={toggleTask}
                 editTask={editTask}
